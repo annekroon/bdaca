@@ -1,5 +1,5 @@
-\documentclass{beamer}
-%\documentclass[handout]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 
 %\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=structure.fg!25]
 % or whatever
@@ -13,7 +13,6 @@
 \usepackage{listings}
 \usepackage{geometry}
 \usepackage{hyperref}
-
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -29,12 +28,11 @@ numberstyle=\tiny,
 backgroundcolor=\color[rgb]{0.85,0.90,1}
 }
 
-
 \begin{document}
 
-\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 1 -- Wednesday \\ »Introduction«}
-\author[Damian Trilling]{Damian Trilling \\ ~ \\ \footnotesize{d.c.trilling@uva.nl \\@damian0604} \\ \url{www.damiantrilling.net}}
-\date{4 April 2018}
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis  \ (Part I )} \\ Week 1 -- Monday  \\ »Introduction«}
+\author[Anne Kroon]{Anne Kroon \\ ~ \\ \footnotesize{a.c.kroon@uva.nl \\@annekroon} \\}
+\date{1 April 2019}
 \institute[UvA]{Afdeling Communicatiewetenschap \\Universiteit van Amsterdam}
 
 
@@ -46,42 +44,46 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 \tableofcontents
 \end{frame}
 
-
-
 \section{Introducing\ldots}
 \subsection{\ldots the people}
 
-\begin{frame}
+\begin{frame} 
 	Introducing\ldots \\
 	~~~~~~~~\ldots the people
 \end{frame}
 
+
+\begin{frame}{Introducing\ldots} {\huge{Anne}} \small{} 
+	\begin{columns}[] \column{.3\textwidth} \makebox[\columnwidth]{ \includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/anne.jpg}} \column{.7\textwidth} dr. Anne Kroon \\ 
+Assistant Professor Corporate Communication
+ \begin{itemize} 
+ 	\item Studied Journalism and Communication in Utrecht
+ 	and at the UvA,  2006 - 2013
+ 	\item PhD candidate corporate communication at ASCoR, 2014 - 2017
+ 	\item Research focus on bias and stereotypes about minorities in media environments, and effects on (implicit) stereotypical beliefs
+ 	\item Interested in using automated approaches
+ \end{itemize} @annekroon ~~ a.c.kroon@uva.nl  ~~ REC-C~7\textsuperscript{th}~floor ~~ \url{http://www.uva.nl/profiel/k/r/a.c.kroon/a.c.kroon.html} 
+\end{columns} \end{frame}
+
 \begin{frame}{Introducing\ldots}
-	{\huge{Damian}}
-	\small{}
-	\begin{columns}
-		\column{.3\textwidth}
-		\makebox[\columnwidth]{
-			\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/damian.jpg}}
-		\column{.7\textwidth}
-		dr. Damian Trilling \\
-		Assistant Professor Political Communication \& Journalism \\
-		\begin{itemize}
-			\item studied Communication Science in M\"unster and at the VU 2003--2009
-			\item PhD candidate @ ASCoR 2009--2012
-			%\item now: Universitair Docent (UD) / Assistant Professor
-			\item interested in political communication and journalism in a changing media environment and in innovative (digital, large-scale, computational) research methods
-		\end{itemize}
-		@damian0604 ~~ d.c.trilling@uva.nl ~~ REC-C~8\textsuperscript{th}~floor ~~ \url{www.damiantrilling.net} 
-	\end{columns}
+{\huge{\right) }}
+\small{}
+\begin{columns}
+	\column{.3\textwidth}
+	\makebox[\columnwidth]{
+		\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/damian.jpg}}
+	\column{.7\textwidth}
+	dr. Damian Trilling \\
+	Assistant Professor Political Communication \& Journalism \\
+	\begin{itemize}
+		\item studied Communication Science in M\"unster and at the VU 2003--2009
+		\item PhD candidate @ ASCoR 2009--2012
+		%\item now: Universitair Docent (UD) / Assistant Professor
+		\item interested in political communication and journalism in a changing media environment and in innovative (digital, large-scale, computational) research methods
+	\end{itemize}
+	@damian0604 ~~ d.c.trilling@uva.nl ~~ REC-C~8\textsuperscript{th}~floor ~~ \url{www.damiantrilling.net} 
+\end{columns}
 \end{frame}
-
-\begin{frame}{Introducing\ldots} {\huge{Joanna}} \small{} 
-	\begin{columns}[] \column{.3\textwidth} \makebox[\columnwidth]{ \includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/joanna.jpg}} \column{.7\textwidth} Joanna Strycharz, MSc. \\ 
-	PhD candidate in persuasive communication
- \begin{itemize} \item Researching what consumers know and think about personalized marketing
- \item interested in innovative research methods. \end{itemize} @StrJoanna ~~ j.strycharz@uva.nl \end{columns} \end{frame}
-
 
 
 \begin{frame}{Introducing\ldots}
@@ -99,9 +101,6 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 \end{frame}
 
 
-
-
-
 \section{What is Big Data?}
 \subsection{Definitions}
 
@@ -117,7 +116,6 @@ What is Big Data?
 }
 \end{frame}
 }
-
 
 %\begin{frame}{What is Big Data?}
 %What would \emph{you} call Big Data?
@@ -204,8 +202,6 @@ Inevitable influences of:
 \end{frame}
 
 
-
-
 \section{Methods}
 \begin{frame}
 Methods
@@ -219,14 +215,14 @@ APIs, scrapers and crawlers, feeds, databases, \ldots \\
 Storage in different file formats
 \end{block}
 \begin{block}{2. How to analyze data}<3->
-Sentiment analysis, automated content analysis, regular expressions, natural language processing, cluster analysis,  machine learning, network analysis
+Sentiment analysis, automated content analysis, regular expressions, natural language processing, machine learning
 \end{block}
 \end{frame}
 
 
 \begin{frame}{The ACA toolbox}
 	\makebox[\columnwidth]{
-		\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/boumanstrilling2016}}
+		\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/boumanstrilling2016_.png}}
 	\\
 	\tiny
 	Boumans, J.W., \& Trilling, D. (2016). Taking stock of the toolkit: An overview of relevant automated content analysis approaches and techniques for digital journalism scholars. \emph{Digital Journalism, 4}, 1. 8--23.
@@ -243,8 +239,6 @@ The programming language Python (and the huge amount of Python modules others al
 %\onslide<2->{But aren't there existing tools?}
 %\onslide<3->{ --- sometimes. But look at this example:}
 \end{frame}
-
-
 
 
 \begin{frame}
@@ -311,11 +305,10 @@ The programming language Python (and the huge amount of Python modules others al
 %
 
 
-
 \begin{frame}{Why program your own tool?}
-\makebox[\linewidth]{
-\includegraphics[width=\paperwidth,height=.8\paperheight,keepaspectratio]{../../pictures/toolification.png}
-}
+%\makebox[\linewidth]{
+%\includegraphics[width=\paperwidth,height=.8\paperheight,keepaspectratio]{../../pictures/toolification.png}
+%}
 \end{frame}
 
 \begin{frame}{Why program your own tool?}
@@ -369,8 +362,6 @@ Assuming that science should be \emph{transparent} and \emph{reproducible by any
 {\footnotesize{Mahrt \& Scharkow, 2013, p. 30\\}}
 
 \end{frame}
-
-
 
 \section{What have others done?}
 \begin{frame}
@@ -491,8 +482,6 @@ Starting with two hashtags (one used by progressives, one used by conservatives)
 \end{frame}
 
 
-
-
 \section{What can we do?}
 
 \subsection{Considerations regarding feasibility}
@@ -560,8 +549,6 @@ And then:
 \end{frame}
 
 
-
-
 \section{The schedule}
 \begin{frame}
 The schedule
@@ -569,7 +556,7 @@ The schedule
 
 \begin{frame}{The schedule}
 \begin{block}{Each week}
-In general: A lecture (Wednesday) and a lab session (Friday). \\ Each week one method.
+In general: A lecture (Monday) and a lab session (Thursday). \\ Each week one method.
 \end{block}
 \begin{block}{Examinations}
 A mid-term take-home exam in week 5 and an individual research project on which you work during the whole course.
@@ -590,9 +577,9 @@ Next meetings
 
 \begin{frame}{Week 1: Introduction}
 
-\begin{block}{Friday, 6--4}
-Lab session.\\
-\textbf{Preparation: Read chapters 2 and 3! \\Make sure in advance that your VM works!}
+\begin{block}{Thursday, 4--4}
+Getting started
+\textbf{chapters 2 and 3, testing everything in the VM}
 
 \end{block}
 
@@ -630,8 +617,6 @@ Lab session.\\
 %
 %\end{frame}
 %
-
-
 
 \end{document}
 

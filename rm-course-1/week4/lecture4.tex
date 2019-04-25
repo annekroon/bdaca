@@ -1,8 +1,8 @@
 % !TEX TS-program = pdflatex
 % !TEX encoding = UTF-8 Unicode
 
-\documentclass{beamer}
-% for handouts: \documentclass[handout]{beamer}
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
 
 %\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=structure.fg!25]
 % or whatever
@@ -36,9 +36,9 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 \begin{document}
 
-\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 4 -- Wednesday \\ »Sentiment Analysis«}
-\author[Damian Trilling]{Damian Trilling \\ ~ \\ \footnotesize{d.c.trilling@uva.nl \\@damian0604} \\ \url{www.damiantrilling.net}}
-\date{25 April 2018}
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 4 -- Thursday \\ » Sentiment Analysis «}
+\author[Anne Kroon]{Anne Kroon \\ ~ \\ \footnotesize{a.c.kroon@uva.nl \\@annekroon} \\}
+\date{April 25, 2019}
 \institute[UvA]{Afdeling Communicatiewetenschap \\Universiteit van Amsterdam}
 
 
@@ -49,6 +49,108 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 \begin{frame}{Today}
 \tableofcontents
 \end{frame}
+
+\section{API assignment last week}
+
+\begin{frame}[fragile]{Creating an URL to make an API request}
+\begin{lstlisting}
+import requests
+import json
+
+base_url = `https://www.rijksmuseum.nl/api/pages/en/{}?key={}&format=json'
+page_of_interest =`whats-on/exhibitions-past'
+key = `YOURKEY'
+
+full_url = base_url.format(page_of_interest, key)
+
+\end{lstlisting}
+\onslide<2->{
+	\footnotesize{NB: the built-in  \texttt{.format()} method returns a formatted value / representation. More specifically, it replaces the '\{\}' in a string by the argument specified between '()' }}
+\onslide<3->{\\
+	\footnotesize{NB: assign your unique API-key requested to the variable \texttt{key} }}
+\end{frame}
+
+
+\begin{frame}[fragile]{Making an API request}
+\begin{lstlisting}
+r = requests.get(full_url)
+print(`Response HTTP Status Code: {}'.format(r.status_code))
+
+data = json.loads(r.content.decode(`utf-8'))
+
+\end{lstlisting}
+\onslide<2->{
+	\footnotesize{NB: Response HTTP Status Code:  \texttt{200} means success}}
+\end{frame}
+
+
+\begin{frame}[fragile]{Making an API request}
+\begin{lstlisting}
+from collections import defaultdict
+import dateutil.parser
+counts = defaultdict(int)
+
+for item in data[`contentPage'][`overviewItems']:
+    end_date = ` '.join(item[`text'].split(` ')[-3:])
+    dt = dateutil.parser.parse(end_date)
+    counts[dt.month] += 1
+print(counts)
+
+\end{lstlisting}
+\onslide<2->{
+	\footnotesize{NB: you can parse dates with  \texttt{dateutil.parser}}}
+\end{frame}
+
+
+\begin{frame}[fragile]{Now its your turn!}
+
+How to get started? \\
+Search and consult online documentation on using APIs (e.g., on the organization's webpage, github page). \\
+Consult Stackoverflow or other online sources for help.
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Reddit API}
+\begin{lstlisting}
+import praw
+import pandas as pd
+import datetime as dt
+
+client_id = `****'
+client_secret = `****'
+user_agent = `****'
+username = `****'
+password = `****'
+
+reddit = praw.Reddit(client_id=client_id,  client_secret=client_secret,  user_agent=user_agent,  username=username,  password=password)
+
+\end{lstlisting}
+\onslide<2->{
+	\footnotesize{This is very helpful: \url{http://www.storybench.org/how-to-scrape-reddit-with-python/}}}
+\onslide<3->{\\
+	\footnotesize{and this: \url{https://towardsdatascience.com/scrape-reddit-data-using-python-and-google-bigquery-44180b579892} }}
+\end{frame}
+
+
+\begin{frame}[fragile]{Reddit API}
+\begin{lstlisting}
+reddit_dict = { "title":[], "score":[],  "id":[],  "url":[], "comms_num": [],  "created": [],  "body":[]}
+
+for submission in reddit.subreddit('learnprogramming').hot(limit=15):
+    reddit_dict["title"].append(submission.title)
+    reddit_dict["score"].append(submission.score)
+    reddit_dict["id"].append(submission.id)
+    reddit_dict["url"].append(submission.url)
+    reddit_dict["comms_num"].append(submission.num_comments)
+    reddit_dict["created"].append(submission.created)
+    reddit_dict["body"].append(submission.selftext)
+
+\end{lstlisting}
+\onslide<2->{
+	\footnotesize{ \url{https://praw.readthedocs.io/en/latest/code_overview/models/subreddit.html}}}
+\end{frame}
+
 
 
 
@@ -68,7 +170,6 @@ Not much. We counted some frequencies and calculated some averages.
 \end{block}
 
 \end{frame}
-
 
 
 \subsection{What can we do?}
@@ -136,25 +237,18 @@ Taking the example of Twitter:
 
 \begin{frame}{Systematizing analytical approaches}
 
-{\textbf{$\Rightarrow$ It depends on your reserach question which approach is more interesting!}}
+{\textbf{$\Rightarrow$ It depends on your research question which approach is more interesting!}}
 \end{frame}
-
-
-
 
 
 
 \begin{frame}{Automated Content Analysis}
 	\makebox[\columnwidth]{
-		\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/boumanstrilling2016}}
+		\includegraphics[width=\columnwidth,height=\paperheight,keepaspectratio]{../../pictures/boumanstrilling2016_.png}}
 	\\
 	\tiny
 	Boumans, J.W., \& Trilling, D. (2016). Taking stock of the toolkit: An overview of relevant automated content analysis approaches and techniques for digital journalism scholars. \emph{Digital Journalism, 4}, 1. 8--23.
 \end{frame}
-
-
-
-
 
 
 \section[Sentiment analysis]{Data analysis 1: Sentiment analysis}
@@ -162,7 +256,7 @@ Taking the example of Twitter:
 \begin{frame}
 Data analysis 1:\\
 \textbf{Sentiment analysis}
-\end{frame}
+\end{frame} 
 
 
 \begin{frame}{What is sentiment analysis?}
@@ -175,27 +269,10 @@ Data analysis 1:\\
 \end{itemize}
 ~\\ 
 \footnotesize{
-\onslide<6->{* Less sophisticated approaches do not see this as a sperate dimension but simply calculate $objectivity=1-(negativity+positivity)$}}
+\onslide<6->{* Less sophisticated approaches do not see this as a seperate dimension but simply calculate $objectivity=1-(negativity+positivity)$}}
 \end{block}
 \end{frame}
 
-
-
-\begin{frame}{Applications}
-\begin{block}{Who uses it?}
-\begin{itemize}
-\item Companies
-\item especially for Web Analytics
-\item Social Scientists
-\item applications in data journalism, politics, \ldots
-\end{itemize}
-Many references to examples in Mostafa (2013).
-\end{block}
-~\\
-$\Rightarrow$ Cases in which you have a huge amount of data or real-time data and you want to get an idea of the tone. \\ ~
-\par
-\tiny{Mostafa, M. M. (2013). More than words: Social networks’ text mining for consumer brand sentiments. \emph{Expert Systems with Applications, 40}(10), 4241– 4251. doi:10.1016/j.eswa.2013.01.019}\\
-\end{frame}
 
 
 \begin{frame}[fragile]{Example}
@@ -210,8 +287,26 @@ $\Rightarrow$ Cases in which you have a huge amount of data or real-time data an
  $-1 \leq polarity \leq +1$\\
  $0 \leq subjectivity \leq +1$ )} \\~\\
 \vskip 1cm 
-\tiny{This is the module pattern.nl, available for Python 2 via \texttt{pip}. The development branch on github supports Python 3. \\ De Smedt, T., \& Daelemans W. (2012).  Pattern for Python. \emph{Journal of Machine Learning Research, 13}, 2063-2067.\\}
+\tiny{This is the module pattern.nl \\ De Smedt, T., \& Daelemans W. (2012).  Pattern for Python. \emph{Journal of Machine Learning Research, 13}, 2063-2067.\\}
 \end{frame}
+
+
+\begin{frame}{Applications}
+\begin{block}{Who uses it?}
+	\begin{itemize}
+		\item Companies
+		\item especially for Web Analytics
+		\item Social Scientists
+		\item applications in data journalism, politics, \ldots
+	\end{itemize}
+	Many references to examples in Mostafa (2013).
+\end{block}
+~\\
+$\Rightarrow$ Cases in which you have a huge amount of data or real-time data and you want to get an idea of the tone. \\ ~
+\par
+\tiny{Mostafa, M. M. (2013). More than words: Social networks’ text mining for consumer brand sentiments. \emph{Expert Systems with Applications, 40}(10), 4241– 4251. doi:10.1016/j.eswa.2013.01.019}\\
+\end{frame}
+
 
 \subsection{Bag-of-words approaches}
 \begin{frame}
@@ -369,13 +464,23 @@ Advanced approaches
 \item interpreting repeated letters ("baaaaaad"), CAPITALS and !!!
 \item idioms
 \item negation 
-\item ldots
+\item \ldots
 \end{itemize}
 \end{block}
 ~ \\
 \tiny{Thelwall, M., Buckley, K., \& Paltoglou, G. (2012). Sentiment strength detection for the social Web. \emph{Journal of the American Society for Information Science and Technology, 63}(1), 163-173.\\}
 \end{frame}
 
+{\setbeamercolor{background canvas}{bg=black}
+	\begin{frame}[plain]
+	\makebox[\linewidth]{
+		\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{../../pictures/woordenlijst4.png}}
+\end{frame}
+\begin{frame}[plain]
+\makebox[\linewidth]{
+	\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{../../pictures/woordenlijst5.png}}
+\end{frame}
+}
 
 \begin{frame}{Advanced approaches}
 \begin{block}{Take the structure of a text into account}
@@ -451,7 +556,7 @@ A sentiment analysis tailored to your needs!
 
 \begin{frame}{}
 Already this still relatively simple approach seems to work satisfactory, but if 106 scientists from 24 competing teams (!) work on it, they can 
-\begin{block}{group suidide notes by these characteristics:}<2->
+\begin{block}{group suicide notes by these characteristics:}<2->
 \begin{multicols}{2}
 {\small {
 \begin{itemize}
@@ -490,7 +595,7 @@ Packages for sentiment analysis
 	
 \begin{description}
 	\item[vader]<1-> pro: in NLTK module, con: English only
-	\item[pattern]<2-> pro: mutiple languages (including Dutch), con: porting to Python 3 is still under development (but in principle, it works)
+	\item[pattern]<2-> pro: multiple languages (including Dutch)
 	\item[sentistrength]<3-> pro: multiple languages, widely used, con: needs Python wrapper, license
 	
 \end{description}
@@ -504,10 +609,18 @@ Packages for sentiment analysis
 \end{frame}
 
 
+\begin{frame}%{Agreement between off-the-shelf packages}
+	\makebox[\columnwidth]{
+	\includegraphics[width=\columnwidth,height=.8\paperheight,keepaspectratio]{../../pictures/boukessentiment}}
+\\
+\tiny
+Boukes, M., van der Velde, R.N., \& Vliegenthart, R. (2018). The good and bad in economic news: Comparing (automatic) measurements of sentiment in Dutch economic news. \emph{International Communication Association conference}, Prague, Czech Republic.
+\end{frame}
 
-\subsection{A receipe}
 
-\begin{frame}{A possible receipe for doing your sentiment analysis}
+\subsection{A recipe}
+
+\begin{frame}{A possible recipe for doing your sentiment analysis}
 	
 \begin{enumerate}
 	\item Construct a list \texttt{data} of strings with your input data
@@ -519,10 +632,8 @@ Packages for sentiment analysis
 
 \end{frame}
 
-
-
 \subsection{Machine Learning as alternative}
-\begin{frame}{Superivsed ML ($\Rightarrow week 7$)}
+\begin{frame}{Superivsed ML ($\Rightarrow$ week 7)}
 	An alternative state-of-the-art approach:
 	\begin{block}{Use supervised machine learning}
 		\begin{itemize}
@@ -598,8 +709,6 @@ Packages for sentiment analysis
 %
 
 
-
-
 \section[Next meetings]{Take-home message, next meetings, \& exam}
 \begin{frame}
 Take-home message\\
@@ -621,9 +730,9 @@ Next meetings
 
 
 \begin{frame}{Mid-term take home exam}
-\begin{block}{Week 5: Friday, 4 May, to Tuesday, 8 May}
+\begin{block}{Week 5: Thursday, 2 May, to Tuesday, 6 May}
 \begin{itemize}
-\item You get the exam on Friday at the end of the meeting
+\item You get the exam on Thursday at the end of the meeting
 \item Answers have to be handed in no later than Tuesday evening, 23.59
 \item 30\% of final grade
 \item 3 questions:
@@ -638,17 +747,14 @@ If you \emph{fully} understood all exercises until now, it shouldn't be difficul
 \end{frame}
 
 
-
 \begin{frame}{Next meetings}
-\begin{block}{Friday, 27--4}
+\begin{block}{Monday, 29--4}
 Task for during the meeting: Conduct an own sentiment analysis!
 
 You can bring your own data (you will probably learn more!), but then already think about how to write some script to read the data (as we did last week and as described in Chapter 5).
 \end{block}
 
 \end{frame}
-
-
 
 
 \end{document}

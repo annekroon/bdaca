@@ -2,7 +2,7 @@
 % !TEX encoding = UTF-8 Unicode
 
 \documentclass{beamer}
-% for handouts: \documentclass[handout]{beamer}
+#\documentclass[handout]{beamer}
 
 %\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=structure.fg!25]
 % or whatever
@@ -36,14 +36,13 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 \begin{document}
 
-
-\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 5 -- Friday \\ Automated content analysis with NLP and regular expressions}
-\author[Damian Trilling]{Damian Trilling \\ ~ \\ \footnotesize{d.c.trilling@uva.nl \\@damian0604} \\ \url{www.damiantrilling.net}}
-\date{4 May 2018}
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 5 -- Thursday \\ » Automated content analysis with NLP and regular expressions «}
+\author[Anne Kroon]{Anne Kroon \\ ~ \\ \footnotesize{a.c.kroon@uva.nl \\@annekroon} \\}
+\date{May 2, 2019}
 \institute[UvA]{Afdeling Communicatiewetenschap \\Universiteit van Amsterdam}
 
 %\maketitle
-\begin{frame}[plain]{}
+\begin{frame}{}
 \titlepage
 \end{frame}
 
@@ -136,7 +135,7 @@ Automated content analysis using regular expressions
 \begin{enumerate}
 \item<1-> \lbrack Pp\rbrack ython
 \item<2-> \lbrack A-Z\rbrack +
-\item<3-> RT ?:? @\lbrack a-zA-Z0-9\rbrack *
+\item<3-> RT .*: @\lbrack a-zA-Z0-9\rbrack *
 \end{enumerate}
 \end{block}
 \end{frame}
@@ -294,6 +293,7 @@ for line in tekst:
 
 \begin{frame}{Practice yourself!}
 \huge{\url{http://www.pyregex.com/}}
+\huge{\url{https://regex101.com/}}
 \end{frame}
 
 \section{Natural Language Processing}
@@ -342,9 +342,9 @@ Natural Language Processing
 \begin{lstlisting}
 testo='He gives her a beer and a cigarette.'
 testonuovo=""
-stopwords=['and','the','a','or','he','she','him','her']
+mystopwords=['and','the','a','or','he','she','him','her']
 for verbo in testo.split():
-    if verbo not in stopwords:
+    if verbo not in mystopwords:
         testonuovo=testonuovo+verbo+" "
 \end{lstlisting}
 What do we get if we do:
@@ -366,11 +366,22 @@ Why is "He" still in there? \\ How can we fix this?
 \begin{lstlisting}
 testo='He gives her a beer and a cigarette.'
 testonuovo=""
-stopwords=['and','the','a','or','he','she','him','her']
+mystopwords=['and','the','a','or','he','she','him','her']
 for verbo in testo.split():
-    if verbo.lower() not in stopwords:
+    if verbo.lower() not in mystopwords:
         testonuovo=testonuovo+verbo+" "
 \end{lstlisting}
+
+\pause
+
+With \textit{list comprehension} and the \texttt{.join()} method, you can achieve the same thing in one line:
+
+\begin{lstlisting}
+tn2 = " ".join([w for w in testo.split() if w not in mystopwords])
+\end{lstlisting}
+\pause
+This is more efficient and more ``pythonic'', but may be more difficult to debug (especially if it gets more complicated)
+
 \end{frame}
 
 
@@ -423,19 +434,28 @@ i am run while generous greet my neighbor
 from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
 stemmer=SnowballStemmer("english")
-stopwords = stopwords.words("english")
+mystopwords = stopwords.words("english")
 frase="I am running while generously greeting my neighbors"
 frasenuevo=""
 for palabra in frase.lower().split():
-    if palabra not in stopwords:
+    if palabra not in mystopwords:
         frasenuevo=frasenuevo + stemmer.stem(palabra)  + " "
 \end{lstlisting}
 Now, {\tt{print(frasenuevo)}} returns:
 \begin{lstlisting}
 run generous greet neighbor
 \end{lstlisting}
-Perfect!\\
-\onslide<2>{
+Perfect!
+
+\pause
+\small
+Or:
+\begin{lstlisting}
+print(" ".join([stemmer.stem(p) for p in frase.lower().split() if p not in mystopwords]))
+\end{lstlisting}
+
+
+\onslide<3>{
 \tiny{In order to use \texttt{nltk.corpus.stopwords}, you have to download that module once. You can do so by typing the following in the Python console and selecting the appropriate package from the menu that pops up: \\ \texttt{import nltk\\nltk.download()}\\NB: Don't download everything, that's several GB.\\}}
 \end{frame}
 
@@ -498,6 +518,50 @@ And you could get the word type of "morning" with \texttt{tagged[5][1]}!
 \end{frame}
 
 
+\begin{frame}{More NLP}
+\Huge{Look at \url{http://spacy.io}}
+\end{frame}
+
+
+\begin{frame}[fragile]{Example: Named Entity Recognition with spacy}
+Terminal:
+
+\begin{lstlisting}
+ sudo pip3 install spacy
+ sudo python3 -m spacy download nl    # or en, de, fr ....
+\end{lstlisting}
+
+Python:
+
+\begin{lstlisting}
+import spacy
+nlp = spacy.load('nl')
+doc = nlp('Een 38-jarige vrouw uit Zeist en twee mannen moeten 24 maanden de cel in voor de gecoördineerde oplichting van Rabobank-klanten.')
+for ent in doc.ents:
+    print(ent.text,ent.label_)
+\end{lstlisting}
+
+returns:
+
+\begin{lstlisting}
+Zeist LOC
+Rabobank ORG
+\end{lstlisting}  
+
+\end{frame}
+
+
+
+\begin{frame}{More NLP}
+\Huge{Look at \url{http://nlp.stanford.edu}}
+\end{frame}
+
+
+\begin{frame}{More NLP}
+\Huge{Look at \url{https://www.clips.uantwerpen.be/pattern}}
+\end{frame}
+
+
 
 \section{Take-home message \& next steps}
 \begin{frame}
@@ -513,20 +577,23 @@ Next meetings
 \item Possible steps to preprocess the data
 \item Regular expressions
 \item Word counts
+\item Where to look for NLP tasks
 \end{itemize}
 \end{block}
 \end{frame}
 
 
-\begin{frame}{Next meetings}
+\begin{frame}{And now...}
+
+
+\begin{block}{Practice}
+Write your own ACA script!
+\end{block}
+
 \begin{block}{TAKE HOME EXAM}
-Deadline: Tuesday, 23.59
+	Handed out after Thursday meeting\\
+	Deadline: Tuesday, 23.59
 \end{block}
-
-\begin{block}{Wednesday}
-Statistics with pandas and Jupyter Notebook
-\end{block}
-
 
 
 \end{frame}

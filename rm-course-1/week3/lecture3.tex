@@ -1,5 +1,6 @@
 \documentclass{beamer}
-% for handouts: \documentclass[handout]{beamer}
+% for handouts: 
+% \documentclass[handout]{beamer}
 
 %\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=structure.fg!25]
 % or whatever
@@ -30,12 +31,11 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 }
 
 
-
-
-\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 3 -- Wednesday \\ Data harvesting and storage}
-\author[Damian Trilling]{Damian Trilling \\ ~ \\ \footnotesize{d.c.trilling@uva.nl \\@damian0604} \\ \url{www.damiantrilling.net}}
-\date{18 March 2018}
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 3 -- Monday \\ » Data harvesting and storage «}
+\author[Anne Kroon]{Anne Kroon \\ ~ \\ \footnotesize{a.c.kroon@uva.nl \\@annekroon} \\}
+\date{April 15, 2019}
 \institute[UvA]{Afdeling Communicatiewetenschap \\Universiteit van Amsterdam}
+
 
 \begin{document}
 
@@ -57,7 +57,38 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 Discussing the code
 \end{frame}
 
+\begin{frame}[fragile]{Working with a subset of the data}
+What to do if you want to work with a smaller subset of the data?
 
+Taking a random sample of a dict (to practice with a smaller subset of the data)
+\begin{lstlisting}
+import json
+import random
+
+with open("/home/damian/pornexercise/xhamster.json") as fi:
+    data=json.load(fi)
+
+short_data = dict(random.sample(data.items(), 10))
+
+\end{lstlisting}
+\onslide<2->{
+	\footnotesize{NB:  This will return a random sample of 10 items in the dictionary}}
+\onslide<3->{\\
+	\footnotesize{NB: Obviously, you can select samples in any size you want: \texttt{dict(random.sample(data.items(), 357))} allows you to get 357 items}}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Working with a subset of the data}
+
+What to do if you want to work with a smaller subset of the data?
+
+Taking the first 10 elements in a list:
+\begin{lstlisting}
+mylist_short = mylist[:10]
+\end{lstlisting}
+
+\end{frame}
 
 \begin{frame}[fragile]{Reading a JSON file into a dict, looping over the dict}
 Task 1: Print all titles of all videos
@@ -119,7 +150,7 @@ pprint(data)
 
 These alternatives would also work:
 \begin{lstlisting}
-for v in data.values()):
+for v in data.values():
 	print(v["title"])
 \end{lstlisting}
 
@@ -129,25 +160,6 @@ for k in data:      #or: for k in data.keys():
 \end{lstlisting}
 
 \textbf{Do you see (dis-)advantages?}
-\end{frame}
-
-
-
-\begin{frame}[fragile]{Working with a subset of the data}
-	
-What to do if you want to work with a smaller subset of the data?
-
-Taking a random sample of 10 items in a dict:
-	\begin{lstlisting}
-import random
-mydict_short = dict(random.sample(mydict.items(),10))
-	\end{lstlisting}
-	
-Taking the first 10 elements in a list:
-	\begin{lstlisting}
-mylist_short = mylist[:10]
-	\end{lstlisting}
-
 \end{frame}
 
 
@@ -265,6 +277,8 @@ Make sure you fully understand the code!\\
 Re-read the corresponding chapters\\
 \vspace{1cm}
 \textbf{PLAY AROUND!!!}\\
+
+Suggestion: Exercise in Appendix B (Analyze your own WhatsApp history!)
 \end{frame}
 
 
@@ -645,7 +659,7 @@ Next meetings
 \end{frame}
 
 \begin{frame}{Next meetings}
-\begin{block}{Friday, 20--3}
+\begin{block}{Thursday, 18--2}
 Writing some first data collection scripts
 \end{block}
 	

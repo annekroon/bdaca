@@ -1,5 +1,5 @@
 \documentclass{beamer}
-% for handouts: \documentclass[handout]{beamer}
+%\documentclass[handout]{beamer}
 
 %\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=structure.fg!25]
 % or whatever
@@ -33,9 +33,9 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 \begin{document}
 
-\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 2 -- Monday \\ »Getting started with Python«}
-\author[Damian Trilling]{Damian Trilling \\ ~ \\ \footnotesize{d.c.trilling@uva.nl \\@damian0604} \\ \url{www.damiantrilling.net}}
-\date{11 April 2018}
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 2 -- Monday\\ »Getting started with Python«}
+\author[Anne Kroon]{Anne Kroon \\ ~ \\ \footnotesize{a.c.kroon@uva.nl \\@annekroon} \\}
+\date{April 8, 2019}
 \institute[UvA]{Afdeling Communicatiewetenschap \\Universiteit van Amsterdam}
 
 
@@ -68,7 +68,7 @@ See also Chapter 4.
 \item[{\color{red}int}] \texttt{32}
 \item[{\color{red}float}] \texttt{1.75}
 \item[{\color{red}bool}] \texttt{True}, \texttt{False}
-\item[{\color{red}string}] \texttt{"Damian"}
+\item[{\color{red}string}] \texttt{"Jessica"}
 \onslide<2->{\scriptsize \item[({\color{red}variable name}] \texttt{firstname})}
 \end{description}
 \end{block}
@@ -77,7 +77,6 @@ See also Chapter 4.
 \onslide<3->{\textbf{You cannot calculate \texttt{3 * "5"}} {\tiny{(In fact, you can. It's \tt{"555"})}}.\\
 But you can calculate {\tt{3 * int("5")}}}
 \end{frame}
-
 
 
 \begin{frame}{Python lingo}
@@ -213,8 +212,8 @@ The program is structured by TABs or SPACEs
 The program is structured by TABs or SPACEs
 \end{block}
 \begin{lstlisting}
-firstnames=['Damian','Lori','Bjoern']
-age={'Bjoern': 27, 'Damian': 32, 'Lori': 26}
+firstnames=['Anne','Lori','Bjoern']
+age={'Bjoern': 27, 'Anne': 33, 'Lori': 26}
 print ("The names and ages of these people:")
 for naam in firstnames:
     print (naam,age[naam])
@@ -234,8 +233,8 @@ The program is structured by TABs or SPACEs
 print ("The names and ages of all these people:")
 for naam in firstnames:
     print (naam,age[naam])
-    if naam=="Damian":
-        print ("He teaches this course")
+    if naam=="Anne":
+        print ("She teaches this course")
     elif naam=="Lori":
         print ("She is a former assistant")
     elif naam=="Bjoern":
@@ -290,7 +289,7 @@ Next meetings
 \end{frame}
 
 
-\begin{frame}{Friday}
+\begin{frame}{Thursday}
 	We will work together on ``Describing an existing structured dataset'' (Appendix A).\\
 	\textbf{Preparation: Make sure you understood all of today's concepts!}
 \end{frame}

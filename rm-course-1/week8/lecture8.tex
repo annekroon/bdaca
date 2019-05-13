@@ -40,12 +40,10 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 \begin{document}
 
-\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 8 -- Wednesday \\ »Looking back and froward«}
-\author[Damian Trilling]{Damian Trilling \\ ~ \\ \footnotesize{d.c.trilling@uva.nl \\@damian0604} \\ \url{www.damiantrilling.net}}
-\date{28 May 2018}
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 8 -- Thursday  \\ »Looking back and froward«}
+\author[Anne Kroon]{Anne Kroon \\ ~ \\ \footnotesize{a.c.kroon@uva.nl \\@annekroon} \\}
+\date{May 16, 2019}
 \institute[UvA]{Afdeling Communicatiewetenschap \\Universiteit van Amsterdam}
-
-
 
 
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, 
@@ -158,15 +156,14 @@ We learned techniques for:
 \node [block, below of=visualize] (visualizetech) {visualizations and summary tables};
 
 
-
 \path [pijltje] (retrievetech)--(processtech);
 \path [pijltje] (processtech)--(analyzetech);
 \path [pijltje] (analyzetech)--(visualizetech);
 
 
-\node [block, below of = retrievetech, fill=green!20] (retrievepython) {glob\\ json \& csv\\ requests\\ twitter\\ tweepy\\ lxml\\ \ldots};
+\node [block, below of = retrievetech, fill=green!20] (retrievepython) {glob\\ json \& csv\\ requests\\ lxml\\ \ldots};
 
-\node [block, below of = processtech, fill=green!20] (processpython) {nltk\\ gensim\\ scikit-learn \ldots};
+\node [block, below of = processtech, fill=green!20] (processpython) {nltk\\ pattern \\ vader \\ gensim\\ scikit-learn \ldots};
 
 \node [block, below of = analyzetech, fill=green!20] (analyzepython) {numpy/scipy\\ pandas\\ statsmodels\\ \ldots};
 
@@ -196,8 +193,6 @@ We learned techniques for:
 \end{frame}
 
 
-
-
 \begin{frame}{The big picture}
 \begin{block}{Start with pen and paper}
 \begin{enumerate}[<+->]
@@ -206,8 +201,6 @@ We learned techniques for:
 \end{enumerate}
 \end{block}
 \end{frame}
-
-
 
 
 \begin{frame}{Develop components separately}
@@ -508,6 +501,17 @@ Looking forward\\
 	\end{block}
 \end{frame}
 
+
+{\setbeamercolor{background canvas}{bg=lightgray}
+\begin{frame}[plain]
+\makebox[\linewidth]{
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{../../pictures/dependencies_spacy.png}}
+PREP: Prepositional modifier \\
+NSUBJPASS: Nominal subject (passive) \\
+AUXPASS: Auxiliary (passive) \\
+\end{frame}
+
+}
 
 
 \begin{frame}{Process and/or enrich}

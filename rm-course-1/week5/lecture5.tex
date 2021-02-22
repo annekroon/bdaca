@@ -36,9 +36,16 @@ backgroundcolor=\color[rgb]{0.85,0.90,1}
 
 \begin{document}
 
+<<<<<<< HEAD
 \title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 5 -- Thursday \\ » Automated content analysis with NLP and regular expressions «}
 \author[Anne Kroon]{Anne Kroon \\ ~ \\ \footnotesize{a.c.kroon@uva.nl \\@annekroon} \\}
 \date{May 2, 2019}
+=======
+
+\title[Big Data and Automated Content Analysis]{\textbf{Big Data and Automated Content Analysis} \\ Week 5 -- Tuesday \\ Automated content analysis with NLP and regular expressions}
+\author[Damian Trilling]{Damian Trilling \\ ~ \\ \footnotesize{d.c.trilling@uva.nl \\@damian0604} \\ \url{www.damiantrilling.net}}
+\date{28 April 2020}
+>>>>>>> 314096216d9b77583e382c099caf965fd8700d10
 \institute[UvA]{Afdeling Communicatiewetenschap \\Universiteit van Amsterdam}
 
 %\maketitle
@@ -135,7 +142,11 @@ Automated content analysis using regular expressions
 \begin{enumerate}
 \item<1-> \lbrack Pp\rbrack ython
 \item<2-> \lbrack A-Z\rbrack +
+<<<<<<< HEAD
 \item<3-> RT .*: @\lbrack a-zA-Z0-9\rbrack *
+=======
+\item<3-> RT ?:? @\lbrack a-zA-Z0-9\rbrack +
+>>>>>>> 314096216d9b77583e382c099caf965fd8700d10
 \end{enumerate}
 \end{block}
 \end{frame}
@@ -295,6 +306,8 @@ for line in tekst:
 \huge{\url{http://www.pyregex.com/}}
 \huge{\url{https://regex101.com/}}
 \end{frame}
+
+
 
 \section{Natural Language Processing}
 \begin{frame}
@@ -513,9 +526,11 @@ And you could get the word type of "morning" with \texttt{tagged[5][1]}!
 
 
 \begin{frame}{More NLP}
-\Huge{Look at \url{http://nltk.org}}
+  \Huge{Look at \url{http://nltk.org}}
 
-\end{frame}
+  \Huge{Look at \url{http://spacy.io}}
+
+  \Huge{Look at \url{https://stanfordnlp.github.io/stanza/}}
 
 
 \begin{frame}{More NLP}
@@ -563,12 +578,16 @@ Rabobank ORG
 
 
 
-\section{Take-home message \& next steps}
-\begin{frame}
-Take-home message\\
-Take-home exam\\
-Next meetings
 \end{frame}
+
+
+
+
+\section{Next steps}
+
+\begin{frame}[plain]
+\huge Next steps
+  \end{frame}
 
 
 \begin{frame}{Take-home messages}
@@ -583,21 +602,43 @@ Next meetings
 \end{frame}
 
 
+<<<<<<< HEAD
 \begin{frame}{And now...}
 
 
 \begin{block}{Practice}
 Write your own ACA script!
 \end{block}
+=======
+
+>>>>>>> 314096216d9b77583e382c099caf965fd8700d10
 
 \begin{block}{TAKE HOME EXAM}
 	Handed out after Thursday meeting\\
 	Deadline: Tuesday, 23.59
 \end{block}
 
+\begin{frame}{Thursday meeting}
 
+  \begin{block}{Exercise}
+    Exercise: 
+    \url{https://github.com/damian0604/bdaca/blob/master/rm-course-1/week5/regexp-exercise.txt}
+
+    \begin{itemize}
+    \item Make some test strings
+    \item Check wether your regex works as expected
+    \end{itemize}
+
+
+  \end{block}
+  
+\begin{block}{Two options for Thursday:}
+\begin{itemize}
+\item If there are many questions on Canvas: We'll discuss them.
+\item If not: I'll already introduce you to statistics in Python (week 7) so that we can do cooler stuff in week 7 (like topic modelling)
+\end{itemize}
+\end{block}
 \end{frame}
-
 
 
 
